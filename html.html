@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<canvas id="myCanvas" width="150" height="15" style="border: black 2px solid;">
+</canvas>
+<br>
+<input type="button" id="btnOff" value="SwitchOff" onclick="mySwitchButton.switchOff()">
+<input type="button" id="btnOn" value="SwitchOn" onclick="mySwitchButton.switchOn()">
+    <script>
+        function electricLamp() {
+            this.turnOff = function ()
+            {
+                this.status = 'OFF';
+                document.getElementById("myCanvas").style.backgroundColor = "darkgrey";
+            };
+            this.turnOn = function ()
+            {
+                this.status = 'ON';
+                document.getElementById("myCanvas").style.backgroundColor= "gold";
+            };
+        }
+         function switchButton(){
+             this.connectToLamp = function (lampName)
+             {
+                 this.lamp = lampName;
+             };
+             this.switchOff = function ()
+             {
+                 this.status = 'OFF';
+                 this.lamp.turnOff();
+             };
+             this.switchOn = function ()
+             {
+                 this.status = 'ON';
+                 this.lamp.turnOn();
+             };
+
+         }
+         var myLamp =  new electricLamp();
+         var mySwitchButton = new switchButton();
+         mySwitchButton.connectToLamp(myLamp);
+         document.write(mySwitchButton.lamp);
+    </script>
+
+</body>
+</html>
